@@ -1,15 +1,21 @@
 #pragma once
+#include "MyVector.hpp"
+
 class Set
 {
-protected:
-
-
 public:
+	bool has(long element) const;
+	virtual bool canContain() = 0;
+	virtual void add(long element) = 0;
+	virtual void remove(long element) = 0;
+	size_t size() const;
+	bool isEmpty() const;
 
-private:
-	long a;
-	long b;
-	bool isAInfinity = true;
-	bool isBInfinity = true;
+	virtual ~Set() = default;
+
+protected:
+	MyVector<long> elements;
+
+	bool isElementValid(long element) const;
 };
 

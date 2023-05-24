@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include "Constants.h"
 
 template <typename T>
 class MyVector
@@ -37,6 +36,7 @@ public:
 	void push_at(const T& element, size_t index);
 	void push_at(T&& element, size_t index);
 
+	bool contains(const T& element) const;
 	size_t size() const;
 	size_t capacity() const;
 
@@ -47,6 +47,9 @@ public:
 
 	~MyVector();
 };
+
+static const int INITIAL_CAPACITY = 4;
+static const int RESIZE_COEF = 2;
 
 template <typename T>
 void MyVector<T>::resize(size_t capacity)
@@ -106,7 +109,7 @@ MyVector<T>::MyVector(size_t capacity)
 
 
 template <typename T>
-MyVector<T>::MyVector() : MyVector(constants::INITIAL_CAPACITY) {}
+MyVector<T>::MyVector() : MyVector(INITIAL_CAPACITY) {}
 
 template <typename T>
 MyVector<T>::MyVector(const MyVector<T>& other)
@@ -161,7 +164,7 @@ void MyVector<T>::push_back(const T& element)
 template <typename T>
 void MyVector<T>::push_back(T&& element)
 {
-	downsizeIfNeeded();
+	upsizeIfNeeded();
 	data[size] = std::move(element);
 }
 
@@ -173,6 +176,8 @@ T MyVector<T>::pop_back()
 		throw std::logic_error("Vector is empty!");
 	}
 
+	downsizeIfNeeded();
+
 	return data[--size];
 }
 
@@ -180,6 +185,8 @@ template <typename T>
 void MyVector<T>::erase()
 {
 	size = 0;
+	capacity = INITIAL_CAPACITY;
+	resize(capacity);
 }
 
 template <typename T>
@@ -191,14 +198,76 @@ void MyVector<T>::clear()
 template <typename T>
 T MyVector<T>::pop_at(size_t index)
 {
+	if (index < size)
+	{
+		throw std::out_of_range("Index out of range!");
+	}
 
+	if (isEmpty())
+	{
+		throw std::logic_error("Vector is empty!");
+	}
+
+	for (size_t i = index; i < size - 1; i++)
+	{
+		T temp = data[i];
+		data[i] = data[i + 1];
+		data[i + 1] = temp;
+	}
+
+	return data[--size];
 }
 
 template <typename T>
 void MyVector<T>::push_at(const T& element, size_t index)
 {
+	if (index < size)
+	{
+		throw std::out_of_range("Index out of range!");
+	}
 
+	if (isEmpty())
+	{
+		throw std::logic_error("Vector is empty!");
+	}
+
+	upsizeIfNeeded();
+
+	for (size_t i = size; i > index; i--)
+	{
+		T temp = data[i];
+		data[i] = data[i - 1];
+		data[i - 1] = temp;
+	}
+
+	data[index] = element;
 }
+
+template <typename T>
+void MyVector<T>::push_at(T&& element, size_t index)
+{
+	if (index < size)
+	{
+		throw std::out_of_range("Index out of range!");
+	}
+
+	if (isEmpty())
+	{
+		throw std::logic_error("Vector is empty!");
+	}
+
+	upsizeIfNeeded();
+
+	for (size_t i = size; i > index; i--)
+	{
+		T temp = data[i];
+		data[i] = data[i - 1];
+		data[i - 1] = temp;
+	}
+
+	data[index] = std::move(element);
+}
+
 
 template <typename T>
 size_t MyVector<T>::size() const
@@ -241,12 +310,29 @@ void MyVector<T>::upsizeIfNeeded()
 {
 	if (size == capacity)
 	{
-		resize(capacity * constants::RESIZE_COEF);
+		resize(capacity * RESIZE_COEF);
 	}
 }
 
 template <typename T>
 void MyVector<T>::downsizeIfNeeded()
 {
+	if (size * RESIZE_COEF * RESIZE_COEF < capacity)
+	{
+		resize(capacity / RESIZE_COEF);
+	}
+}
 
+template <typename T>
+bool MyVector<T>::contains(const T& element) const
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		if (data[i] == element)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
