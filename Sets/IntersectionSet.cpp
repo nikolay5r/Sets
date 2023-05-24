@@ -2,7 +2,7 @@
 
 IntersectionSet::IntersectionSet(const Set** sets, size_t numberOfSets) : CollectionSet(sets, numberOfSets) {}
 
-bool IntersectionSet::has(long element) const
+bool IntersectionSet::has(long long element) const
 {
 	for (size_t i = 0; i < size; i++)
 	{
