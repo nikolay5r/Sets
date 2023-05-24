@@ -131,6 +131,7 @@
     <ClCompile Include="CriteriaSet.cpp" />
     <ClCompile Include="IntersectionSet.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MyString.cpp" />
     <ClCompile Include="Set.cpp" />
     <ClCompile Include="SetCriteriaFunctions.cpp" />
     <ClCompile Include="UnionSet.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="CollectionSet.h" />
     <ClInclude Include="CriteriaSet.h" />
     <ClInclude Include="IntersectionSet.h" />
+    <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />
     <ClInclude Include="Set.h" />
     <ClInclude Include="SetCriteriaFunctions.h" />
