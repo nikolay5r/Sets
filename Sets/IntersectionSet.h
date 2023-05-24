@@ -7,7 +7,7 @@ class IntersectionSet : public CollectionSet
 public:
 	IntersectionSet(const Set** sets, size_t numberOfSets);
 
-	bool has(long element) const override;
+	bool has(long long element) const override;
 	Set* clone() const override;
 };
 

@@ -22,8 +22,7 @@ void CollectionSet::free()
 void CollectionSet::copyFrom(const CollectionSet& other)
 {
 	size = other.size;
-	capacity = other.capacity;
-	sets = new Set * [capacity];
+	sets = new Set * [size];
 
 	for (size_t i = 0; i < size; i++)
 	{
@@ -34,31 +33,14 @@ void CollectionSet::copyFrom(const CollectionSet& other)
 void CollectionSet::moveFrom(CollectionSet&& other) noexcept
 {
 	size = other.size;
-	capacity = other.capacity;
 	sets = other.sets;
 	other.sets = nullptr;
 	other.size = 0;
-	other.capacity = 0;
-}
-
-void CollectionSet::resize(size_t capacity)
-{
-	this->capacity = capacity;
-	Set** newSets = new Set * [capacity];
-
-	for (size_t i = 0; i < size; i++)
-	{
-		newSets[i] = sets[i];
-		sets[i] = nullptr;
-	}
-
-	delete[] sets;
-	sets = newSets;
 }
 
 CollectionSet::CollectionSet(const Set** sets, size_t numberOfSets) : size(numberOfSets)
 {
-	this->sets = new Set * [capacity];
+	this->sets = new Set * [size];
 
 	for (size_t i = 0; i < numberOfSets; i++)
 	{

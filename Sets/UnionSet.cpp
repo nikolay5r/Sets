@@ -5,7 +5,7 @@
 
 UnionSet::UnionSet(const Set** sets, size_t numberOfSets) : CollectionSet(sets, numberOfSets) {}
 
-bool UnionSet::has(long element) const
+bool UnionSet::has(long long element) const
 {
 	for (size_t i = 0; i < size; i++)
 	{

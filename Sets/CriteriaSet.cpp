@@ -6,7 +6,7 @@ Set* CriteriaSet::clone() const
 	return new CriteriaSet(*this);
 }
 
-CriteriaSet::CriteriaSet(const MyVector<long>& criteriaElements, bool (*pred)(long elementToCheck, long criteria)) : criteriaElements(criteriaElements), pred(pred)
+CriteriaSet::CriteriaSet(const MyVector<long long>& criteriaElements, bool (*pred)(long long elementToCheck, long long criteria)) : criteriaElements(criteriaElements), pred(pred)
 {
 	size_t size = criteriaElements.size();
 	for (size_t i = 0; i < size; i++)
@@ -15,7 +15,7 @@ CriteriaSet::CriteriaSet(const MyVector<long>& criteriaElements, bool (*pred)(lo
 	}
 }
 
-CriteriaSet::CriteriaSet(size_t numberOfCriteriaElements, const long* criteriaElements, bool (*pred)(long elementToCheck, long criteriaElement)) : pred(pred)
+CriteriaSet::CriteriaSet(size_t numberOfCriteriaElements, const long long* criteriaElements, bool (*pred)(long long elementToCheck, long long criteriaElement)) : pred(pred)
 {
 	for (size_t i = 0; i < numberOfCriteriaElements; i++)
 	{
@@ -24,13 +24,13 @@ CriteriaSet::CriteriaSet(size_t numberOfCriteriaElements, const long* criteriaEl
 	}
 }
 
-CriteriaSet::CriteriaSet(long criteriaElement, bool (*pred)(long elementToCheck, long criteriaElement)) : pred(pred)
+CriteriaSet::CriteriaSet(long long criteriaElement, bool (*pred)(long long elementToCheck, long long criteriaElement)) : pred(pred)
 {
 	attestElement(criteriaElement);
 	criteriaElements.push_back(criteriaElement);
 }
 
-bool CriteriaSet::has(long element) const
+bool CriteriaSet::has(long long element) const
 {
 	size_t size = criteriaElements.size();
 	for (size_t i = 0; i < size; i++)

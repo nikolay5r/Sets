@@ -2,8 +2,8 @@
 
 namespace criteria
 {
-	bool isEqualTo(long elementToCheck, long criteriaElement);
-	bool isNotDivisibleTo(long elementToCheck, long criteriaElement);
-	bool isDivisibleTo(long elementToCheck, long criteriaElement);
+	bool isEqualTo(long long elementToCheck, long long criteriaElement);
+	bool isNotDivisibleTo(long long elementToCheck, long long criteriaElement);
+	bool isDivisibleTo(long long elementToCheck, long long criteriaElement);
 }
 

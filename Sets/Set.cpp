@@ -2,7 +2,7 @@
 #include "MyVector.hpp"
 #include <limits>
 
-void Set::attestElement(long element) const
+void Set::attestElement(long long element) const
 {
 	if (element < INT_MIN || element > UINT_MAX)
 	{
@@ -10,31 +10,33 @@ void Set::attestElement(long element) const
 	}
 }
 
-long Set::next() const
+long long Set::next() const
 {
 	currentElement++;
-	for (; currentElement < UINT_MAX; currentElement++)
+	for (long long i = currentElement; i < UINT_MAX; i++)
 	{
-		if (has(currentElement))
+		if (has(i))
 		{
+			currentElement = i;
 			return currentElement;
 		}
 	}
 }
 
-long Set::prev() const
+long long Set::prev() const
 {
 	currentElement--;
-	for (; currentElement > INT_MIN; currentElement--)
+	for (long long i = currentElement; i > INT_MIN; i--)
 	{
-		if (has(currentElement))
+		if (has(i))
 		{
+			currentElement = i;
 			return currentElement;
 		}
 	}
 }
 
-void Set::print(long a, long b) const
+void Set::print(long long a, long long b) const
 {
 	attestElement(a);
 	attestElement(b);
@@ -43,7 +45,7 @@ void Set::print(long a, long b) const
 		throw std::logic_error("First arg must be smaller than second arg!");
 	}
 	int count = 0;
-	for (long i = a; i < b; i++)
+	for (long long i = a; i < b; i++)
 	{
 		if (has(i))
 		{
