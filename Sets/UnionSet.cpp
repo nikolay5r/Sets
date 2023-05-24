@@ -1,6 +1,7 @@
 #include "UnionSet.h"
 #include "Set.h"
 #include "CollectionSet.h"
+#include <limits>
 
 UnionSet::UnionSet(const Set** sets, size_t numberOfSets) : CollectionSet(sets, numberOfSets) {}
 
@@ -21,4 +22,3 @@ Set* UnionSet::clone() const
 {
 	return new UnionSet(*this);
 }
-

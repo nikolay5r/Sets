@@ -35,10 +35,10 @@ bool CriteriaSet::has(long element) const
 	size_t size = criteriaElements.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		if (!(*pred)(element, criteriaElements[i]))
+		if ((*pred)(element, criteriaElements[i]))
 		{
-			return false;
+			return true;
 		}
 	}
-	return true;
+	return false;
 }
