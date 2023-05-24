@@ -17,7 +17,10 @@ bool Set::has(long element) const
 	return elements.contains(element);
 }
 
-bool Set::isElementValid(long element) const
+void Set::attestElement(long element) const
 {
-	return element < UINT_MAX&& element > INT_MIN;
+	if (element > INT_MIN && element < UINT_MAX)
+	{
+		throw std::invalid_argument("Element you are trying to add is out of range for the set!");
+	}
 }

@@ -7,7 +7,7 @@ public:
 	Set() = default;
 
 	bool has(long element) const;
-	virtual bool canContain() = 0;
+	virtual bool canContain(long element) = 0;
 	virtual void add(long element) = 0;
 	virtual void remove(long element) = 0;
 	size_t size() const;
@@ -18,6 +18,6 @@ public:
 protected:
 	MyVector<long> elements;
 
-	bool isElementValid(long element) const;
+	void attestElement(long element) const;
 };
 
