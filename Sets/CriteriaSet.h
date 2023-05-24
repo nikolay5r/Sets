@@ -12,7 +12,7 @@ public:
 	CriteriaSet(long criteriaElement, bool (*pred)(long elementToCheck, long criteriaElement));
 
 	bool has(long element) const override;
-	const Set* clone() const override;
+	Set* clone() const override;
 
 	~CriteriaSet() = default;
 };

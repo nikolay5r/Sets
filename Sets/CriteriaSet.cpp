@@ -1,7 +1,7 @@
 #include "CriteriaSet.h"
 #include "Set.h"
 
-const Set* CriteriaSet::clone() const
+Set* CriteriaSet::clone() const
 {
 	return new CriteriaSet(*this);
 }
