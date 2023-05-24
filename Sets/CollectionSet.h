@@ -15,6 +15,7 @@ protected:
 	size_t capacity = 0;
 
 public:
+	CollectionSet(size_t capacity);
 	CollectionSet(const Set** sets, size_t numberOfSets);
 	CollectionSet(const CollectionSet& other);
 	CollectionSet(CollectionSet&& other) noexcept;

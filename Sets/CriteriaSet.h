@@ -1,5 +1,7 @@
 #pragma once
 #include "Set.h"
+#include "MyVector.hpp"
+
 class CriteriaSet : public Set
 {
 private:
