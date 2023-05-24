@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="CollectionSet.cpp" />
     <ClCompile Include="CriteriaSet.cpp" />
+    <ClCompile Include="File_Error.cpp" />
     <ClCompile Include="IntersectionSet.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyString.cpp" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="CollectionSet.h" />
     <ClInclude Include="CriteriaSet.h" />
+    <ClInclude Include="File_Error.h" />
     <ClInclude Include="IntersectionSet.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />
