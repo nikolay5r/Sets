@@ -131,6 +131,7 @@
     <ClCompile Include="CriteriaSet.cpp" />
     <ClCompile Include="File_Error.cpp" />
     <ClCompile Include="IntersectionSet.cpp" />
+    <ClCompile Include="Invalid_Option.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyString.cpp" />
     <ClCompile Include="Set.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="CriteriaSet.h" />
     <ClInclude Include="File_Error.h" />
     <ClInclude Include="IntersectionSet.h" />
+    <ClInclude Include="Invalid_Option.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />
     <ClInclude Include="Set.h" />
