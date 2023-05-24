@@ -1,6 +1,11 @@
 #include "CriteriaSet.h"
 #include "Set.h"
 
+const Set* CriteriaSet::clone() const
+{
+	return new CriteriaSet(*this);
+}
+
 CriteriaSet::CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long elementToCheck, long criteria)) : criteriaElements(criteriaElements), pred(pred)
 {
 	size_t size = criteriaElements.size();

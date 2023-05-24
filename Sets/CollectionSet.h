@@ -3,6 +3,7 @@
 
 class CollectionSet : public Set
 {
-
+protected:
+	Set** sets = nullptr;
 };
 
