@@ -1,71 +1,39 @@
 #include "CriteriaSet.h"
 #include "Set.h"
 
-void CriteriaSet::attestCriteriaElement(long element)
-{
-	if (element < INT_MIN || element > UINT_MAX)
-	{
-		throw std::invalid_argument("Invalid element found in the criteria elements! Criteria elements must be smaller than 2^32 - 1 and larger than -2^16!");
-	}
-}
-
-void CriteriaSet::attestElementWithCriteriaFunc(long element)
-{
-	if (!canContain(element))
-	{
-		throw std::invalid_argument("The element you are trying to add is invalid! The element does not meet the criteria!");
-	}
-}
-
-CriteriaSet::CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long element)) : Set()
+CriteriaSet::CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long elementToCheck, long criteria)) : criteriaElements(criteriaElements), pred(pred)
 {
 	size_t size = criteriaElements.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		attestCriteriaElement(criteriaElements[i]);
+		attestElement(criteriaElements[i]);
 	}
-	this->pred = pred;
 }
 
-CriteriaSet::CriteriaSet(size_t numberOfCriteriaElements, long* criteriaElements, bool (*pred)(long element)) : Set()
+CriteriaSet::CriteriaSet(size_t numberOfCriteriaElements, long* criteriaElements, bool (*pred)(long elementToCheck, long criteriaElement)) : pred(pred)
 {
 	for (size_t i = 0; i < numberOfCriteriaElements; i++)
 	{
-		attestCriteriaElement(criteriaElements[i]);
-	}
-	this->pred = pred;
-}
-
-void CriteriaSet::add(long element)
-{
-	attestElement(element);
-	attestElementWithCriteriaFunc(element);
-
-	if (!elements.contains(element))
-	{
-		elements.push_back(element);
+		attestElement(criteriaElements[i]);
+		this->criteriaElements.push_back(criteriaElements[i]);
 	}
 }
 
-void CriteriaSet::remove(long element)
+CriteriaSet::CriteriaSet(long criteriaElement, bool (*pred)(long elementToCheck, long criteriaElement)) : pred(pred)
 {
-	if (!elements.contains(element))
-	{
-		throw std::invalid_argument("The element you are trying to remove does not exists in the set!");
-	}
+	attestElement(criteriaElement);
+	criteriaElements.push_back(criteriaElement);
+}
 
-	size_t size = elements.size();
+bool CriteriaSet::has(long element) const
+{
+	size_t size = criteriaElements.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		if (elements[i] == element)
+		if (!(*pred)(element, criteriaElements[i]))
 		{
-			elements.pop_at(i);
-			break;
+			return false;
 		}
 	}
-}
-
-bool CriteriaSet::canContain(long element)
-{
-	return (*pred)(element);
+	return true;
 }

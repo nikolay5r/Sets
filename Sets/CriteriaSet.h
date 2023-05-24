@@ -3,19 +3,15 @@
 class CriteriaSet : public Set
 {
 private:
-	bool (*pred)(long element) = nullptr;
+	bool (*pred)(long elementToCheck, long criteriaElement) = nullptr;
 	MyVector<long> criteriaElements;
 
-	void attestCriteriaElement(long element);
-	void attestElementWithCriteriaFunc(long element);
-
 public:
-	CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long element));
-	CriteriaSet(size_t numberOfCriteriaElements, long* criteriaElements, bool (*pred)(long element));
+	CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long elementToCheck, long criteriaElement));
+	CriteriaSet(size_t numberOfCriteriaElements, long* criteriaElements, bool (*pred)(long elementToCheck, long criteriaElement));
+	CriteriaSet(long criteriaElement, bool (*pred)(long elementToCheck, long criteriaElement));
 
-	void add(long element) override;
-	void remove(long element) override;
-	bool canContain(long element) override;
+	bool has(long element) const override;
 
 	~CriteriaSet() = default;
 };
