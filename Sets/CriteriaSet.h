@@ -8,7 +8,7 @@ private:
 
 public:
 	CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long element));
-	CriteriaSet(size_t numberOfCriteriaElements, long* criteriaElements, bool (*pred)(size_t numberOfCriteriaElements, long* criteriaElements));
+	CriteriaSet(size_t numberOfCriteriaElements, long* criteriaElements, bool (*pred)(long element));
 
 	void add(long element) override;
 	void remove(long element) override;
