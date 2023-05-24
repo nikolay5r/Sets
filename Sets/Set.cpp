@@ -2,7 +2,7 @@
 #include "MyVector.hpp"
 #include <limits>
 
-void Set::attestElement(long element)
+void Set::attestElement(long element) const
 {
 	if (element < INT_MIN || element > UINT_MAX)
 	{
@@ -12,6 +12,7 @@ void Set::attestElement(long element)
 
 long Set::next() const
 {
+	currentElement++;
 	for (; currentElement < UINT_MAX; currentElement++)
 	{
 		if (has(currentElement))
@@ -23,6 +24,7 @@ long Set::next() const
 
 long Set::prev() const
 {
+	currentElement--;
 	for (; currentElement > INT_MIN; currentElement--)
 	{
 		if (has(currentElement))
@@ -32,3 +34,28 @@ long Set::prev() const
 	}
 }
 
+void Set::print(long a, long b) const
+{
+	attestElement(a);
+	attestElement(b);
+	if (a > b)
+	{
+		throw std::logic_error("First arg must be smaller than second arg!");
+	}
+	int count = 0;
+	for (long i = a; i < b; i++)
+	{
+		if (has(i))
+		{
+			count++;
+			std::cout << i << " ";
+		}
+	}
+
+	if (count == 0)
+	{
+		std::cout << "No elements found...";
+	}
+
+	std::cout << std::endl;
+}
