@@ -1,7 +1,7 @@
 #pragma once
 #include "Set.h"
 
-class UnionSet : public Set
+class CollectionSet : public Set
 {
 
 };

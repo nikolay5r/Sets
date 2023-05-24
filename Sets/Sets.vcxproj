@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CollectionSet.cpp" />
     <ClCompile Include="CriteriaSet.cpp" />
     <ClCompile Include="IntersectionSet.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="UnionSet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollectionSet.h" />
     <ClInclude Include="CriteriaSet.h" />
     <ClInclude Include="IntersectionSet.h" />
     <ClInclude Include="MyVector.hpp" />
