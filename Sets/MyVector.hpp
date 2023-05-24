@@ -203,71 +203,13 @@ T MyVector<T>::pop_at(size_t index)
 		throw std::out_of_range("Index out of range!");
 	}
 
-	if (isEmpty())
-	{
-		throw std::logic_error("Vector is empty!");
-	}
-
-	for (size_t i = index; i < size - 1; i++)
-	{
-		T temp = data[i];
-		data[i] = data[i + 1];
-		data[i + 1] = temp;
-	}
-
-	return data[--size];
 }
 
 template <typename T>
 void MyVector<T>::push_at(const T& element, size_t index)
 {
-	if (index < size)
-	{
-		throw std::out_of_range("Index out of range!");
-	}
 
-	if (isEmpty())
-	{
-		throw std::logic_error("Vector is empty!");
-	}
-
-	upsizeIfNeeded();
-
-	for (size_t i = size; i > index; i--)
-	{
-		T temp = data[i];
-		data[i] = data[i - 1];
-		data[i - 1] = temp;
-	}
-
-	data[index] = element;
 }
-
-template <typename T>
-void MyVector<T>::push_at(T&& element, size_t index)
-{
-	if (index < size)
-	{
-		throw std::out_of_range("Index out of range!");
-	}
-
-	if (isEmpty())
-	{
-		throw std::logic_error("Vector is empty!");
-	}
-
-	upsizeIfNeeded();
-
-	for (size_t i = size; i > index; i--)
-	{
-		T temp = data[i];
-		data[i] = data[i - 1];
-		data[i - 1] = temp;
-	}
-
-	data[index] = std::move(element);
-}
-
 
 template <typename T>
 size_t MyVector<T>::size() const
@@ -317,22 +259,5 @@ void MyVector<T>::upsizeIfNeeded()
 template <typename T>
 void MyVector<T>::downsizeIfNeeded()
 {
-	if (size * RESIZE_COEF * RESIZE_COEF < capacity)
-	{
-		resize(capacity / RESIZE_COEF);
-	}
-}
 
-template <typename T>
-bool MyVector<T>::contains(const T& element) const
-{
-	for (size_t i = 0; i < size; i++)
-	{
-		if (data[i] == element)
-		{
-			return true;
-		}
-	}
-
-	return false;
 }
