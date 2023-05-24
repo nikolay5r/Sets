@@ -6,6 +6,9 @@ private:
 	bool (*pred)(long element) = nullptr;
 	MyVector<long> criteriaElements;
 
+	void attestCriteriaElement(long element);
+	void attestElementWithCriteriaFunc(long element);
+
 public:
 	CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long element));
 	CriteriaSet(size_t numberOfCriteriaElements, long* criteriaElements, bool (*pred)(long element));

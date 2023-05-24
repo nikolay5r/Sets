@@ -1,6 +1,22 @@
 #include "CriteriaSet.h"
 #include "Set.h"
 
+void CriteriaSet::attestCriteriaElement(long element)
+{
+	if (element < INT_MIN || element > UINT_MAX)
+	{
+		throw std::invalid_argument("Invalid element found in the criteria elements! Criteria elements must be smaller than 2^32 - 1 and larger than -2^16!");
+	}
+}
+
+void CriteriaSet::attestElementWithCriteriaFunc(long element)
+{
+	if (!canContain(element))
+	{
+		throw std::invalid_argument("The element you are trying to add is invalid! The element does not meet the criteria!");
+	}
+}
+
 CriteriaSet::CriteriaSet(MyVector<long> criteriaElements, bool (*pred)(long element)) : Set()
 {
 	size_t size = criteriaElements.size();
