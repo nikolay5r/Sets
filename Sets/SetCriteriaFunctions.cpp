@@ -6,12 +6,12 @@ bool criteria::isEqualTo(long elementToCheck, long criteriaElement)
 	return elementToCheck == criteriaElement;
 }
 
-bool criteria::isNotDividableTo(long elementToCheck, long criteriaElement)
+bool criteria::isNotDivisibleTo(long elementToCheck, long criteriaElement)
 {
 	return elementToCheck % criteriaElement != 0;
 }
 
-bool criteria::isDividableTo(long elementToCheck, long criteriaElement)
+bool criteria::isDivisibleTo(long elementToCheck, long criteriaElement)
 {
-	return !isNotDividableTo(elementToCheck, criteriaElement);
+	return !isNotDivisibleTo(elementToCheck, criteriaElement);
 }
