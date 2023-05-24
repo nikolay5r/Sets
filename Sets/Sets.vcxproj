@@ -132,6 +132,7 @@
     <ClCompile Include="IntersectionSet.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Set.cpp" />
+    <ClCompile Include="SetCriteriaFunctions.cpp" />
     <ClCompile Include="UnionSet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="IntersectionSet.h" />
     <ClInclude Include="MyVector.hpp" />
     <ClInclude Include="Set.h" />
+    <ClInclude Include="SetCriteriaFunctions.h" />
     <ClInclude Include="UnionSet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
