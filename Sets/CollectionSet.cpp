@@ -56,12 +56,7 @@ void CollectionSet::resize(size_t capacity)
 	sets = newSets;
 }
 
-CollectionSet::CollectionSet(size_t capacity) : capacity(capacity)
-{
-	sets = new Set * [capacity];
-}
-
-CollectionSet::CollectionSet(const Set** sets, size_t numberOfSets) : capacity(numberOfSets), size(numberOfSets)
+CollectionSet::CollectionSet(const Set** sets, size_t numberOfSets) : size(numberOfSets)
 {
 	this->sets = new Set * [capacity];
 
@@ -79,28 +74,6 @@ CollectionSet::CollectionSet(const CollectionSet& other)
 CollectionSet::CollectionSet(CollectionSet&& other) noexcept
 {
 	moveFrom(std::move(other));
-}
-
-void CollectionSet::removeSet(size_t index)
-{
-	if (index >= size)
-	{
-		throw std::out_of_range("Invalid index passed when removeSet function was called!");
-	}
-
-	delete sets[index];
-	sets[index] = sets[size - 1];
-	sets[size--] = nullptr;
-}
-
-void CollectionSet::addSet(const Set& set)
-{
-	if (size == capacity)
-	{
-		resize(capacity * RESIZE_COEF);
-	}
-
-	sets[size++] = set.clone();
 }
 
 CollectionSet& CollectionSet::operator=(const CollectionSet& other)
