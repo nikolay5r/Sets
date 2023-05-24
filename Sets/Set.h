@@ -4,6 +4,8 @@
 class Set
 {
 public:
+	Set() = default;
+
 	bool has(long element) const;
 	virtual bool canContain() = 0;
 	virtual void add(long element) = 0;

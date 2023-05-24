@@ -21,12 +21,30 @@
     <ClCompile Include="Set.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CriteriaSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnionSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectionSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyVector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CriteriaSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnionSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersectionSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
