@@ -2,10 +2,19 @@
 #include "Set.h"
 #include "MyVector.hpp"
 
+enum class Criteria
+{
+	Equal,
+	Divisible,
+	NotDivisible,
+	Other
+};
+
 class CriteriaSet : public Set
 {
 private:
 	bool (*pred)(long long elementToCheck, long long criteriaElement) = nullptr;
+	Criteria criteria = Criteria::Other;
 	MyVector<long long> criteriaElements;
 
 public:
