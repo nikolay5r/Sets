@@ -44,17 +44,17 @@ void Set::print(long long a, long long b) const
 	{
 		throw std::logic_error("First arg must be smaller than second arg!");
 	}
-	int count = 0;
+	int printCount = 0;
 	for (long long i = a; i < b; i++)
 	{
 		if (has(i))
 		{
-			count++;
+			printCount++;
 			std::cout << i << " ";
 		}
 	}
 
-	if (count == 0)
+	if (printCount == 0)
 	{
 		std::cout << "No elements found...";
 	}

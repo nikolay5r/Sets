@@ -17,10 +17,16 @@ private:
 	Criteria criteria = Criteria::Other;
 	MyVector<long long> criteriaElements;
 
+	void assignCriteriaFunction(Criteria criteria);
+
 public:
-	CriteriaSet(const MyVector<long long>& criteriaElements, bool (*pred)(long long elementToCheck, long long criteriaElement));
-	CriteriaSet(size_t numberOfCriteriaElements, const long long* criteriaElements, bool (*pred)(long long elementToCheck, long long criteriaElement));
-	CriteriaSet(long long criteriaElement, bool (*pred)(long long elementToCheck, long long criteriaElement));
+	CriteriaSet(bool (*pred)(long long elementToCheck, long long criteriaElement), const MyVector<long long>& criteriaElements);
+	CriteriaSet(bool (*pred)(long long elementToCheck, long long criteriaElement), size_t numberOfCriteriaElements, const long long* criteriaElements);
+	CriteriaSet(bool (*pred)(long long elementToCheck, long long criteriaElement), long long criteriaElement);
+
+	CriteriaSet(Criteria criteria, const MyVector<long long>& criteriaElements);
+	CriteriaSet(Criteria criteria, size_t numberOfCriteriaElements, const long long* criteriaElements);
+	CriteriaSet(Criteria criteria, long long criteriaElement);
 
 	bool has(long long element) const override;
 	Set* clone() const override;
@@ -28,3 +34,10 @@ public:
 	~CriteriaSet() = default;
 };
 
+namespace criteria
+{
+	bool isEqualTo(long long elementToCheck, long long criteriaElement);
+	bool isNotDivisibleTo(long long elementToCheck, long long criteriaElement);
+	bool isDivisibleTo(long long elementToCheck, long long criteriaElement);
+	bool otherFunction(long long elementToCheck, long long criteriaElement);
+}
