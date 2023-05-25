@@ -2,11 +2,13 @@
 #include "MyVector.hpp"
 #include <limits>
 
+static const long long ERROR_NUMBER = 1000000;
+
 void Set::attestElement(long long element) const
 {
 	if (element < INT_MIN || element > UINT_MAX)
 	{
-		throw std::out_of_range("Invalid Element! Element is out of range for the set! Elements in set should be between 2^32-1 and -2^16+1");
+		throw std::out_of_range("Invalid Element!\n Element is out of range for the set!\n Elements in set should be between 2^32-1 and -2^16+1");
 	}
 }
 
@@ -20,6 +22,11 @@ long long Set::next() const
 			currentElement = i;
 			return currentElement;
 		}
+		if (currentElement + ERROR_NUMBER == i)
+		{
+			throw std::logic_error("The previous number in line cannot be found!");
+		}
+
 	}
 }
 
@@ -32,6 +39,10 @@ long long Set::prev() const
 		{
 			currentElement = i;
 			return currentElement;
+		}
+		if (currentElement - ERROR_NUMBER == i)
+		{
+			throw std::logic_error("The previous number in line cannot be found!");
 		}
 	}
 }
