@@ -2,7 +2,7 @@
 #include "MyVector.hpp"
 #include <limits>
 
-static const long long ERROR_NUMBER = 10000000;
+static const long long ERROR_NUMBER = 100000000;
 
 void Set::attestElement(long long element) const
 {
@@ -24,7 +24,7 @@ long long Set::next() const
 		}
 		if (currentElement + ERROR_NUMBER == i)
 		{
-			throw std::logic_error("The next number in line cannot be found!");
+			throw std::runtime_error("The next number in line cannot be found!");
 		}
 
 	}
@@ -42,7 +42,7 @@ long long Set::prev() const
 		}
 		if (currentElement - ERROR_NUMBER == i)
 		{
-			throw std::logic_error("The previous number in line cannot be found!");
+			throw std::runtime_error("The previous number in line cannot be found!");
 		}
 	}
 }

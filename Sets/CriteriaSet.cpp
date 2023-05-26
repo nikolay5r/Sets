@@ -54,7 +54,7 @@ bool criteriaFunctions::isNotDivisibleTo(const MyVector<long long>& criteriaElem
 	size_t size = criteriaElements.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		if (element %= criteriaElements[i] == 0)
+		if (element % criteriaElements[i] == 0)
 		{
 			return false;
 		}

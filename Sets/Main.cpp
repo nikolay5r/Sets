@@ -216,6 +216,11 @@ void runSystem()
 		std::cerr << "LOGIC_ERROR: " << error.what() << std::endl;
 		runSystem();
 	}
+	catch (const std::runtime_error& error)
+	{
+		std::cerr << "RUNTIME_ERROR: " << error.what() << std::endl;
+		runSystem();
+	}
 	catch (const std::invalid_argument& error)
 	{
 		std::cerr << "INVALID_ARGUMENT: " << error.what() << std::endl;
