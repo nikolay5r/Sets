@@ -83,19 +83,19 @@ const Set* readSetFromBinary(const char* fileName)
 	{
 	case 0:
 		elements = readElementsFromBinary(file, n);
-		set = new CriteriaSet(Criteria::Equal, n, elements);
+		set = new CriteriaSet(criteriaFunctions::isEqualTo, n, elements);
 		delete[] elements;
 		break;
 
 	case 1:
 		elements = readElementsFromBinary(file, n);
-		set = new CriteriaSet(Criteria::NotDivisible, n, elements);
+		set = new CriteriaSet(criteriaFunctions::isNotDivisibleTo, n, elements);
 		delete[] elements;
 		break;
 
 	case 2:
 		elements = readElementsFromBinary(file, n);
-		set = new CriteriaSet(Criteria::Divisible, n, elements);
+		set = new CriteriaSet(criteriaFunctions::isDivisibleTo, n, elements);
 		delete[] elements;
 		break;
 
