@@ -7,6 +7,7 @@
 #include "MyString.h"
 #include "File_Error.h"
 #include "Invalid_Option.h"
+#include "CriteriaFunctions.h"
 
 const Set** readSetsFromBinary(std::ifstream& file, size_t numberOfSets);
 const Set* readSetFromBinary(const char* fileName);
