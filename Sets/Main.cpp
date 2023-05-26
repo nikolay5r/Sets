@@ -30,20 +30,19 @@ const Set** readSetsFromBinary(std::ifstream& file, size_t numberOfSets)
 	return sets;
 }
 
-const long long* readElementsFromBinary(std::ifstream& file, size_t numberOfElements)
+void readElementsFromBinary(std::ifstream& file, MyVector<long long>& elements)
 {
 	if (!file.is_open())
 	{
 		throw File_Error("File with that name doesn't exist!");
 	}
 
-	long long* elements = new long long[numberOfElements] {0};
+	size_t numberOfElements = elements.size();
+
 	for (size_t i = 0; i < numberOfElements; i++)
 	{
 		file.read((char*)&elements[i], sizeof(int));
 	}
-
-	return elements;
 }
 
 const char* readFileNameFromBinary(std::ifstream& file)
@@ -76,45 +75,55 @@ const Set* readSetFromBinary(const char* fileName)
 	file.read((char*)&t, sizeof(t));
 
 	Set* set = nullptr;
-	const Set** sets = nullptr;
-	const long long* elements = nullptr;
 
 	switch (t)
 	{
 	case 0:
-		elements = readElementsFromBinary(file, n);
-		set = new CriteriaSet(criteriaFunctions::isEqualTo, n, elements);
-		delete[] elements;
+	{
+		MyVector<long long> elements(n, 0);
+		readElementsFromBinary(file, elements);
+		set = new CriteriaSet(criteriaFunctions::isEqualTo, elements);
 		break;
+	}
 
 	case 1:
-		elements = readElementsFromBinary(file, n);
-		set = new CriteriaSet(criteriaFunctions::isNotDivisibleTo, n, elements);
-		delete[] elements;
+	{
+		MyVector<long long> elements(n, 0);
+		readElementsFromBinary(file, elements);
+		set = new CriteriaSet(criteriaFunctions::isNotDivisibleTo, elements);
 		break;
+	}
 
 	case 2:
-		elements = readElementsFromBinary(file, n);
-		set = new CriteriaSet(criteriaFunctions::isDivisibleTo, n, elements);
-		delete[] elements;
+	{
+		MyVector<long long> elements(n, 0);
+		readElementsFromBinary(file, elements);
+		set = new CriteriaSet(criteriaFunctions::isDivisibleTo, elements);
 		break;
+	}
 
 	case 3:
-		sets = readSetsFromBinary(file, n);
+	{
+		const Set** sets = readSetsFromBinary(file, n);
 		set = new UnionSet(sets, n);
 		delete[] sets;
 		break;
+	}
 
 	case 4:
-		sets = readSetsFromBinary(file, n);
+	{
+		const Set** sets = readSetsFromBinary(file, n);
 		set = new IntersectionSet(sets, n);
 		delete[] sets;
 		break;
+	}
 
 	default:
+	{
 		set = nullptr;
 		throw File_Error("Invalid option read from file!");
 		break;
+	}
 	}
 
 	file.close();

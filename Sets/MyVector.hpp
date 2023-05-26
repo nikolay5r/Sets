@@ -20,6 +20,7 @@ public:
 
 	MyVector();
 	explicit MyVector(size_t capacity);
+	MyVector(size_t capacity, const T& defaultValue);
 	MyVector(const MyVector& other);
 	MyVector(MyVector&& other) noexcept;
 
@@ -143,6 +144,16 @@ MyVector<T>::MyVector(size_t capacity)
 {
 	this->cap = capacity;
 	data = new T[capacity];
+}
+
+template <typename T>
+MyVector<T>::MyVector(size_t capacity, const T& defaultValue) : MyVector(capacity)
+{
+	count = capacity;
+	for (size_t i = 0; i < count; i++)
+	{
+		data[i] = defaultValue;
+	}
 }
 
 template <typename T>
