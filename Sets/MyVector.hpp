@@ -20,6 +20,7 @@ public:
 
 	MyVector();
 	explicit MyVector(size_t capacity);
+	MyVector(size_t capacity, const T& defaultValue);
 	MyVector(const MyVector& other);
 	MyVector(MyVector&& other) noexcept;
 
@@ -146,6 +147,16 @@ MyVector<T>::MyVector(size_t capacity)
 }
 
 template <typename T>
+MyVector<T>::MyVector(size_t capacity, const T& defaultValue) : MyVector(capacity)
+{
+	count = capacity;
+	for (size_t i = 0; i < count; i++)
+	{
+		data[i] = defaultValue;
+	}
+}
+
+template <typename T>
 void MyVector<T>::push_back(const T& element)
 {
 	upsizeIfNeeded();
@@ -237,7 +248,7 @@ void MyVector<T>::push_at(const T& element, size_t index)
 template <typename T>
 void MyVector<T>::push_at(T&& element, size_t index)
 {
-	if (index < size)
+	if (index < count)
 	{
 		throw std::out_of_range("Index out of range!");
 	}

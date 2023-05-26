@@ -7,7 +7,6 @@ private:
 	void free();
 	void copyFrom(const CollectionSet& other);
 	void moveFrom(CollectionSet&& other) noexcept;
-	void resize(size_t capacity);
 
 protected:
 	Set** sets = nullptr;
