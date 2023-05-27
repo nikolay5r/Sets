@@ -107,6 +107,10 @@ const Set* readSetFromBinary(const char* fileName)
 	{
 		const Set** sets = readSetsFromBinary(file, n);
 		set = new UnionSet(sets, n);
+		for (size_t i = 0; i < n; i++)
+		{
+			delete sets[i];
+		}
 		delete[] sets;
 		break;
 	}
@@ -115,6 +119,10 @@ const Set* readSetFromBinary(const char* fileName)
 	{
 		const Set** sets = readSetsFromBinary(file, n);
 		set = new IntersectionSet(sets, n);
+		for (size_t i = 0; i < n; i++)
+		{
+			delete sets[i];
+		}
 		delete[] sets;
 		break;
 	}
@@ -142,9 +150,8 @@ void fileSystem(const Set*& set)
 void optionsSystem(const Set* set)
 {
 	std::cout << "\nEnter '1' if you want to print numbers in an interval [a,b];\n"
-		<< "Enter '2' if you want to print the next number in row starting from 0;\n"
-		<< "Enter '3' if you want to print the previous number in row starting from 0:\n"
-		<< "Enter '4' if you want to exit:\n"
+		<< "Enter '2' if you want to print the next number in row. It may take a lot of time;\n"
+		<< "Enter '3' if you want to exit:\n"
 		<< "Option: ";
 
 	int option = 0;
@@ -169,12 +176,6 @@ void optionsSystem(const Set* set)
 		break;
 	}
 	case 3:
-	{
-		long long prevElement = set->prev();
-		std::cout << "Previous element: " << prevElement << std::endl;
-		break;
-	}
-	case 4:
 	{
 		return;
 		break;
